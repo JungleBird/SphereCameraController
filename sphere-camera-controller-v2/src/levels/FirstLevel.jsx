@@ -12,6 +12,7 @@ import { CheckerboardFloor } from "../environments/CheckerboardFloor";
 import { GlassSphereMesh } from "../models/GlassSphere";
 import { StreetLightWithCollision } from "../environments/StreetLight";
 import FollowCamera from "../cameras/FollowCamera";
+import { ObstructionManager } from "../cameras/ObstructionManager";
 
 const BALL_CONFIG = {
   radius: 0.6,
@@ -63,6 +64,7 @@ function SphereController({
 function CameraController({ visualRef, controlsRef, springiness = 0.1 }) {
   return (
     <>
+      <ObstructionManager target={visualRef} />
       <OrbitControls ref={controlsRef} />
       <FollowCamera
         visualRef={visualRef}
