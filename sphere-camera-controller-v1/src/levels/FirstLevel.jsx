@@ -49,19 +49,19 @@ function SphereController({
     // Get camera's forward direction
     const cameraDirection = new THREE.Vector3();
     camera.getWorldDirection(cameraDirection);
-    
+
     // Project to horizontal plane (ignore vertical component)
     cameraDirection.y = 0;
     cameraDirection.normalize();
-    
+
     // Get right vector (perpendicular to forward on horizontal plane)
     const rightDirection = new THREE.Vector3();
     rightDirection.crossVectors(cameraDirection, new THREE.Vector3(0, 1, 0));
     rightDirection.normalize();
-    
+
     // Build impulse vector based on camera-relative directions
     const impulseVector = new THREE.Vector3();
-    
+
     if (keys.current.forward) {
       impulseVector.add(cameraDirection.clone().multiplyScalar(speed * 0.1));
     }
@@ -74,11 +74,11 @@ function SphereController({
     if (keys.current.right) {
       impulseVector.add(rightDirection.clone().multiplyScalar(speed * 0.1));
     }
-    
+
     const impulse = {
       x: impulseVector.x,
       y: impulseVector.y,
-      z: impulseVector.z
+      z: impulseVector.z,
     };
 
     rigidBodyRef.current.applyImpulse(impulse, true);
@@ -148,7 +148,21 @@ export default function FirstLevel() {
         {/* Physics world provider */}
         <Physics gravity={[0, -9.81, 0]}>
           <CheckerboardFloor />
-          <StreetLightWithCollision />
+          <StreetLightWithCollision position={[0, 0, -5]} />
+          <StreetLightWithCollision
+            position={[0, 0, -30]}
+            rotation={[0, Math.PI, 0]}
+          />
+          <StreetLightWithCollision position={[25, 0, -5]} />
+          <StreetLightWithCollision
+            position={[25, 0, -30]}
+            rotation={[0, Math.PI, 0]}
+          />
+          <StreetLightWithCollision position={[-25, 0, -5]} />
+          <StreetLightWithCollision
+            position={[-25, 0, -30]}
+            rotation={[0, Math.PI, 0]}
+          />
           <SphereController
             rigidBodyRef={rigidBodyRef}
             visualRef={visualRef}
