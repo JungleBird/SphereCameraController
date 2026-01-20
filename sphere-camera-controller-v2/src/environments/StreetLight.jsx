@@ -197,9 +197,8 @@ export function StreetLight({
 }
 
 export function StreetLightWithCollision({
-  position = [0, 0, -2.5],
+  position = [0, 0, 0],
   rotation = [0, 0, 0],
-  ...props
 }) {
   return (
     <RigidBody type="fixed" position={position} rotation={rotation}>
@@ -208,7 +207,7 @@ export function StreetLightWithCollision({
         position={position}
         rotation={rotation}
       />
-      <StreetLight position={position} rotation={rotation} {...props} />
+      <StreetLight/>
     </RigidBody>
   );
 }

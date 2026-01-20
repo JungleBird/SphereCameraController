@@ -39,9 +39,7 @@ function SphereController({
   color = "#3498db",
   ...props
 }) {
-
   useSphereController({ rigidBodyRef, speed });
-
 
   return (
     <RigidBody
@@ -108,7 +106,21 @@ export default function FirstLevel() {
         {/* Physics world provider */}
         <Physics gravity={[0, -9.81, 0]}>
           <CheckerboardFloor />
-          <StreetLightWithCollision />
+          <StreetLightWithCollision position={[0, 0, -5]} />
+          <StreetLightWithCollision
+            position={[0, 0, -30]}
+            rotation={[0, Math.PI, 0]}
+          />
+          <StreetLightWithCollision position={[25, 0, -5]} />
+          <StreetLightWithCollision
+            position={[25, 0, -30]}
+            rotation={[0, Math.PI, 0]}
+          />
+          <StreetLightWithCollision position={[-25, 0, -5]} />
+          <StreetLightWithCollision
+            position={[-25, 0, -30]}
+            rotation={[0, Math.PI, 0]}
+          />
           <SphereController
             rigidBodyRef={rigidBodyRef}
             visualRef={visualRef}
