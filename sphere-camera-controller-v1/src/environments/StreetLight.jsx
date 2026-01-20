@@ -23,7 +23,6 @@ export function StreetLight({
   castShadow = true,
   flickerEnabled = true,
   flickerIntensity = 0.05,
-  ...props
 }) {
   const spotLightRef = useRef();
   const pointLightRef = useRef();
@@ -45,7 +44,7 @@ export function StreetLight({
   const lampHeadZ = armLength;
 
   return (
-    <group position={position} rotation={rotation} {...props}>
+    <group position={position} rotation={rotation}>
       {/* Spotlight target - on the ground below the rotated lamp head */}
       <object3D ref={targetRef} position={[lampHeadX, 0, lampHeadZ]} />
 
@@ -201,13 +200,9 @@ export function StreetLightWithCollision({
   rotation = [0, 0, 0],
 }) {
   return (
-    <RigidBody type="fixed" position={position} rotation={rotation}>
-      <CuboidCollider
-        args={[0.12, 2.5, 0.12]}
-        position={position}
-        rotation={rotation}
-      />
-      <StreetLight/>
+    <RigidBody type="fixed" position={position} rotation={rotation} colliders={false}>
+      <CuboidCollider args={[0.12, 2.5, 0.12]} />
+      <StreetLight position={position} rotation={rotation} />
     </RigidBody>
   );
 }
