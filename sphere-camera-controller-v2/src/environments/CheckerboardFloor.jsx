@@ -25,8 +25,8 @@ export function CheckerboardFloor(props) {
   const texture = useMemo(() => createCheckerboardTexture({ size: 32, squares: 2, color1: '#4a7c59', color2: '#6b6b6b' }), [])
   
   return (
-    <RigidBody type="fixed" rotation={[-Math.PI / 2, 0, 0]} {...props}>
-      <mesh receiveShadow>
+    <RigidBody type="fixed" {...props}>
+      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
         {/* The visual representation of our collider */}
         <planeGeometry args={[100, 100]} />
         <meshStandardMaterial map={texture} />
